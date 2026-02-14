@@ -15,28 +15,28 @@ function love.load()
 	static = {}
 
 	static.roof = {}
-	static.roof.b = love.physics.newBody(world, 200, 200, "static")
-	static.roof.s = love.physics.newRectangleShape(400, 400)
+	static.roof.b = love.physics.newBody(world, 0, 0, "static")
+	static.roof.s = love.physics.newRectangleShape(400, 1)
 	static.roof.f = love.physics.newFixture(static.roof.b, static.roof.s)
 	static.roof.f:setUserData("Roof")
 
-	-- static.wallr = {}
-	-- static.wallr.b = love.physics.newBody(world, 400, 200, "static")
-	-- static.wallr.s = love.physics.newRectangleShape(1, 400)
-	-- static.wallr.f = love.physics.newFixture(static.wallr.b, static.wallr.s)
-	-- static.wallr.f:setUserData("WallR")
+	static.wallr = {}
+	static.wallr.b = love.physics.newBody(world, 400, 200, "static")
+	static.wallr.s = love.physics.newRectangleShape(1, 400)
+	static.wallr.f = love.physics.newFixture(static.wallr.b, static.wallr.s)
+	static.wallr.f:setUserData("WallR")
 
-	-- static.walll = {}
-	-- static.walll.b = love.physics.newBody(world, 0, 200, "static")
-	-- static.walll.s = love.physics.newRectangleShape(1, 400)
-	-- static.walll.f = love.physics.newFixture(static.walll.b, static.walll.s)
-	-- static.walll.f:setUserData("WallL")
+	static.walll = {}
+	static.walll.b = love.physics.newBody(world, 0, 200, "static")
+	static.walll.s = love.physics.newRectangleShape(1, 400)
+	static.walll.f = love.physics.newFixture(static.walll.b, static.walll.s)
+	static.walll.f:setUserData("WallL")
 
-	-- static.ground = {}
-	-- static.ground.b = love.physics.newBody(world, 200, 400, "static")
-	-- static.ground.s = love.physics.newRectangleShape(400, 1)
-	-- static.ground.f = love.physics.newFixture(static.ground.b, static.ground.s)
-	-- static.ground.f:setUserData("Ground")
+	static.ground = {}
+	static.ground.b = love.physics.newBody(world, 200, 400, "static")
+	static.ground.s = love.physics.newRectangleShape(400, 1)
+	static.ground.f = love.physics.newFixture(static.ground.b, static.ground.s)
+	static.ground.f:setUserData("Ground")
 end
 
 function love.update(dt)
