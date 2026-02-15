@@ -1,10 +1,13 @@
 function love.load()
+	boxWidth = 170
+	boxHeight = 75
+
 	world = love.physics.newWorld()
 	box = {}
 	box.b = love.physics.newBody(world, 200, 200, "dynamic")
 	box.b:setMass(10)
 	box.b:applyLinearImpulse(love.math.random(500, 600), love.math.random(500, 600))
-	box.s = love.physics.newRectangleShape(170, 75)
+	box.s = love.physics.newRectangleShape(boxWidth, boxHeight)
 	box.f = love.physics.newFixture(box.b, box.s)
 	box.f:setRestitution(1)
 	box.f:setUserData("Box")
@@ -22,6 +25,7 @@ function love.load()
 	walls.body = love.physics.newBody(world, 0, 0, "static")
 	walls.shape = love.physics.newChainShape(true, 0, 0, 400, 0, 400, 400, 0, 400)
 	walls.fixture = love.physics.newFixture(walls.body, walls.shape)
+	sx, sy = 0.5, 0.5
 end
 
 function love.keypressed(key)
@@ -37,6 +41,18 @@ function love.keypressed(key)
 		else
 			love.graphics.setBackgroundColor(1, 1, 1)
 		end
+	elseif key == "a" then
+		sy = sy + 0.01
+		sx = sx + 0.01
+		if box.f then
+			box.f:destroy()
+		end
+		local w = image:getWidth() * sx
+		local h = image:getHeight() * sy
+		box.s = love.physics.newRectangleShape(w, h)
+		box.f = love.physics.newFixture(box.b, box.s)
+		box.f:setRestitution(1)
+		box.f:setFriction(0)
 	end
 end
 
@@ -45,5 +61,5 @@ function love.update(dt)
 end
 
 function love.draw()
-	love.graphics.draw(image, box.b:getX() - 85, box.b:getY() - 37.25, 0, 0.5, 0.5)
+	love.graphics.draw(image, box.b:getX(), box.b:getY(), 0, sx, sy, image:getWidth() / 2, image:getHeight() / 2)
 end
